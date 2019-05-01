@@ -44,56 +44,50 @@ public class MyHeap{
 //Doing the pushdown method
 
 private static int checkChildren(int size, int index){
-  int right = 2 * index + 2;
-  if(right == size) return 1;
-  if(right < size) return 2;
-  return 0;
+  int lkid = 2 * index + 1;
+  if(lkid == size - 1) return 1;
+  if(lkid > size - 1) return 0;
+  return 2;
 }
 
 
 
-private static void pushDown(int[] data, int size, int index){
-  //pushdown is always activated, so we keep swapping stuff
-  while(1 == 1){
-    int lkid = 2 * index + 1;
-    int rkid = 2 * index + 2;
-    int kids = checkChildren(size, index);
-    if(kids == 0){
-      return;
-    }
+private static void pushDown(int[] data, int size, int index) {
+		while (0 < 1) {
+			int lkid = 2 * index + 1;
+			int rkid = 2 * index + 2;
+      int kids = checkChildren(size, index);
 
-    if(kids == 1){
-      if(data[lkid] > data[index]){
-        swap(data, lkid, index);
-        index = lkid;
-        return;
-      } else {
-        return;
-      }
-    }
+			if (kids == 1) {
+				if (data[lkid] > data[index]) {
+					swap(data, lkid, index);
+					index = lkid;
+				}
+				return;
+
+			} else if (kids == 2) {
+        if (data[lkid] > data[rkid]) {
+          if (data[lkid] > data[index]) {
+            swap(data, lkid, index);
+            index = lkid;
+          } else return;
+        } else {
+          if (data[rkid] > data[index]) {
+            swap(data, rkid, index);
+            index = rkid;
+          } else return;
+        }
+
+			} else return;
+		}
+	}
 
 
 
-    if (kids == 2){
-      int chosen = Math.max(data[lkid], data[rkid]);
-      int chosen1;
-      //you have to get the index now
-      if(chosen == data[lkid]){
-        chosen1 = lkid;
-      } else {
-        chosen1 = rkid;
-      }
 
-      if(chosen > data[index]){
-        swap(data, chosen1, index);
-        index = chosen1;
-        return;
-      } else {
-        return;
-      }
-    }
-  }
-}
+
+
+
 
 
 
