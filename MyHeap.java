@@ -79,4 +79,15 @@ private static void pushUp(int[] data, int index) {
 }
 
 
+
+
+//starts at the size - 1, then, in the heap it just keep pushing down into the data structure
+public static void heapify(int[] data) {
+  int size = data.length - 1;
+  for (int i = size; i > -1; i--) {
+    pushDown(data, size, i);
+  }
+}
+
+
 }
