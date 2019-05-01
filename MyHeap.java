@@ -1,6 +1,36 @@
 import java.lang.Object;
 
 public class MyHeap{
+
+
+
+
+
+
+  //starts at the size - 1, then, in the heap it just keep pushing down into the data structure
+  public static void heapify(int[] data) {
+    int size = data.length - 1;
+    for (int i = size; i > -1; i--) {
+      pushDown(data, size, i);
+    }
+  }
+
+
+//look at how small and fresh this is
+  public static void heapsort(int[] data) {
+    heapify(data);
+    int size = data.length;
+    for (int i = size-1; i > -1; i--) {
+      swap(data, 0, i);
+      size--;
+      pushDown(data, size, 0);
+    }
+  }
+
+
+
+
+
   //swap method for later convinience
   private static void swap(int[] data, int x, int y) {
 		int sto = data[x];
@@ -81,13 +111,11 @@ private static void pushUp(int[] data, int index) {
 
 
 
-//starts at the size - 1, then, in the heap it just keep pushing down into the data structure
-public static void heapify(int[] data) {
-  int size = data.length - 1;
-  for (int i = size; i > -1; i--) {
-    pushDown(data, size, i);
-  }
-}
+
+
+
+
+
 
 
 }
