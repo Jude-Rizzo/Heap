@@ -8,21 +8,21 @@ public class MyHeap{
 		data[y] = sto;
 	}
 
-  }
+
 
 
 //Doing the pushdown method
 
 private static int checkChildren(int size, int index){
-  right = 2 * index + 2
+  int right = 2 * index + 2;
   if(right == size) return 1;
   if(right < size) return 2;
-  if(right > size) return 0;
+  return 0;
 }
 
 
 
-private static void pushDown(int[] data, int size, int, index){
+private static void pushDown(int[] data, int size, int index){
   //pushdown is always activated, so we keep swapping stuff
   while(1 == 1){
     int lkid = 2 * index + 1;
@@ -45,13 +45,13 @@ private static void pushDown(int[] data, int size, int, index){
 
 
     if (kids == 2){
-      int chosen = Math.max(data[lchild], data[rchild]);
+      int chosen = Math.max(data[lkid], data[rkid]);
       int chosen1;
       //you have to get the index now
-      if(chosen == data[lchild]){
-        chosen1 = lchild;
+      if(chosen == data[lkid]){
+        chosen1 = lkid;
       } else {
-        chosen1 = rchild;
+        chosen1 = rkid;
       }
 
       if(chosen > data[index]){
@@ -63,4 +63,20 @@ private static void pushDown(int[] data, int size, int, index){
       }
     }
   }
+}
+
+
+
+private static void pushUp(int[] data, int index) {
+  while (index > 0) {
+    //keep going until we are the top or we can't swap with the paretn
+    int parent = (index-1)/2;
+    if (data[index] > data[parent]) {
+      swap(data, parent, index);
+      index = parent;
+    } else return;
+  }
+}
+
+
 }
